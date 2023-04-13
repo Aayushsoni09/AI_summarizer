@@ -3,16 +3,8 @@ import {Routes,Route,Outlet} from 'react-router-dom'
 import React from 'react'
 import { Navigation } from './routes/Navigation.jsx'
 import { Authentication } from './routes/Authentication.jsx'
+import Shop from './routes/shop/Shop.jsx'
 
-const Shop=()=>{
-  return(
-    <div>
-      <Outlet/>
-    <h1>shoppppp</h1>
-    </div>
-    
-  )
-}
 const App = () => {
   return (
   
