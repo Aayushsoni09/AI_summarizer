@@ -1,4 +1,4 @@
-import {getAuth,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth,signInWithPopup,GoogleAuthProvider,createUserWithEmailAndPassword, signInWithEmailAndPassword,signOut,onAuthStateChanged} from 'firebase/auth'
 import { initializeApp } from "firebase/app";
 import {getFirestore,doc,getDoc,setDoc} from 'firebase/firestore'
 
@@ -25,7 +25,6 @@ export const signInWithGooglePopup = () =>signInWithPopup(auth,provider)
 export const db=getFirestore()
 export const createUserDocumentFromAuth = async (userAuth,additionalInfo={}) => {
     const userDocRef=doc(db,'users',userAuth.uid)
-    console.log(userDocRef)
     const userSnapshot = await getDoc(userDocRef)
     console.log(userSnapshot)
 
@@ -44,6 +43,7 @@ export const createUserDocumentFromAuth = async (userAuth,additionalInfo={}) => 
             console.log('error creating the user',error.message)
         }
     }
+    return userDocRef
 }
 
 export const createuserWithEmailAndPassword = async(email,password)=>{
@@ -53,5 +53,7 @@ export const createuserWithEmailAndPassword = async(email,password)=>{
 export const signInwithEmailAndPassword = async(email,password)=>{
     if(!email || !password) return;
     return await signInWithEmailAndPassword(auth,email,password)
-
 }
+export const signOutUser = async()=>await signOut(auth)
+
+export const onAuthStateChangedUser=(callback)=>onAuthStateChanged(auth,callback)

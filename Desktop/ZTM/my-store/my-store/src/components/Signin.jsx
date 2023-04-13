@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import  {signInWithGooglePopup,createUserDocumentFromAuth, signInwithEmailAndPassword}  from '../firebase/firebase.utils'
+import  {signInWithGooglePopup, signInwithEmailAndPassword}  from '../firebase/firebase.utils'
 import Forminput from './Forminput'
 import './signinForm.scss'
 import Button from './Button'
+
 
 const defaultFormFields={
     email:'',
@@ -13,21 +14,19 @@ const defaultFormFields={
 const Signin = () => {
     const[formFields,setformFields]=useState(defaultFormFields)
     const{email,password} = formFields
-   
+
     const resetFields=()=>{
         setformFields(defaultFormFields)
     }
     const signInWithGoogle = async () =>{
-        const {user} = await signInWithGooglePopup()
-            await createUserDocumentFromAuth(user)
-            console.log(user)
+        await signInWithGooglePopup()
       }
         const handleSubmit=async(event)=>{
             event.preventDefault()
         
         try {
-           const response = await signInwithEmailAndPassword(email,password)
-           console.log(response)
+           const {user} = await signInwithEmailAndPassword(email,password)
+
            resetFields() 
         } catch (error) {
             console.log(alert('User not found with these credentials'),error)
