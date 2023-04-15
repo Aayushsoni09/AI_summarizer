@@ -4,7 +4,7 @@ import React from 'react'
 import './productCard.scss'
 import Button from './Button'
 
-const Product = ({product}) => {
+const ProductCard = ({product}) => {
     const {name,price,imageUrl} = product
     const {addItemToCart} = useContext(CartContext)
     const addProductToCart=()=>addItemToCart(product)
@@ -20,4 +20,4 @@ const Product = ({product}) => {
   )
 }
 
-export default Product
+export default ProductCard

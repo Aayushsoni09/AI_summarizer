@@ -4,18 +4,16 @@ import React from 'react'
 import { Navigation } from './routes/Navigation.jsx'
 import { Authentication } from './routes/Authentication.jsx'
 import Shop from './routes/shop/Shop.jsx'
-import CheckoutPage from './routes/checkout/CheckoutPage.jsx'
+import Checkout from './routes/checkout/CheckoutComponent.jsx';
 const App = () => {
   return (
-  
-
-    <Routes>
-      
+    <Routes> 
       <Route path='/' element={<Navigation />} >
         <Route index element={<Home/>}/>
-        <Route path='shop' element={<Shop/>}/>
+        <Route path='shop/*' element={<Shop/>}/>
         <Route path='sign-in' element={<Authentication/>}/>
-        <Route path ='checkout' element={<CheckoutPage/>}/>
+        <Route path='auth' element={<Authentication />} />
+        <Route path='checkout' element={<Checkout />} />
         </Route>
         
       
